@@ -19,7 +19,7 @@ import lombok.ToString;
 @ToString
 public class CountryCodeEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "code")
     private String code;

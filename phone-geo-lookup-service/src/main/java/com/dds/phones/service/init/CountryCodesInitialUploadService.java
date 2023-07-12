@@ -22,7 +22,7 @@ public class CountryCodesInitialUploadService {
     }
 
     @Transactional
-    public void init(){
+    public void init() {
         repository.deleteAll();
         repository.saveAll(countryMapper.map(countryCodesDownloadService.getCountryCodes()));
     }

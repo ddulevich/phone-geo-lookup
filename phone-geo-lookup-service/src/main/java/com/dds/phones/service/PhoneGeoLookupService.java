@@ -25,7 +25,7 @@ public class PhoneGeoLookupService {
         final String countriesByPhone = repository.findCountriesByPhone(cleanedPhoneNumber);
         if (Objects.nonNull(countriesByPhone)) {
             return List.of(countriesByPhone.split(DELIMITER));
-        } else{
+        } else {
             throw new RuntimeException("Countries not found");
         }
     }
