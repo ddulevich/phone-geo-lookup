@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: phone-geo-lookup-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: postgres
+    password: postgres
+    hikari:
+      auto-commit: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        default_schema: public
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+  liquibase:
+    default-schema: public
+    parameters:
+      default-schema-prefix: public.
+
+server:
+  port: ${SERVER_PORT}
+  forward-headers-strategy: framework
+  error:
+    include-message: always

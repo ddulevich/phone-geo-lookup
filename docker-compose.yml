@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  client-frontend:
+    image: frontend:0.0.1
+    build: ./frontend
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+
+  client-backend:
+    image: client:0.0.1
+    build: ./phone-geo-lookup-service
+    ports:
+      - "8088:8088"
+    depends_on:
+      - service-db
+    environment:
+      - SERVER_PORT=8088
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/postgres
+
+  service-db:
+    image: 'postgres:13.1-alpine'
+    ports:
+      - "15432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres:/data/postgres
+    restart: unless-stopped
+
+volumes:
+  postgres:
